@@ -25,7 +25,7 @@
                 <input type="text" v-model="dane[index].nazwa">
                 <label for="">Dana{{index+1}} typ</label>
                 <select v-model="dane[index].typ">
-                    <option value="int AUTO_INCREMENT">id</option>
+                    <option value="int AUTO_INCREMENT PRIMARY KEY">id</option>
                     <option value="int">int</option>
                     <option value="varchar(180)">string</option>
                     <option value="date">data</option>
@@ -35,8 +35,9 @@
             </div>
             <div class="col-2"><button @click="add">dodaj</button> </div>
         </div>
-
+        <textarea style="width:500px;height:300px">
         {{tabela}}
+        </textarea>
 
     </div>
 </div>
@@ -49,7 +50,7 @@
 let app = new Vue({
     el:'#app',
     data:{
-        dane:[{nazwa:'id',typ:'int AUTO_INCREMENT'}],
+        dane:[{nazwa:'id',typ:'int AUTO_INCREMENT PRIMARY KEY'}],
         nazwatabeli:'daty',
         tabela:'',
 
