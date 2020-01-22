@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    
+</body>
+</html>
+<div class="container">
+    <div id="app"> 
+        <div class="form-group">
+            <label for="">Nazwa tabeli:</label>
+            <input v-model="nazwatabeli" type="text">  
+            <button @click="generateTabela">generuj</button> <br>
+        </div>
+        <div class="row">
+            <div class="col-6">
+            <div class="form-group" v-for="(elem,index) in dane">
+                <label for="">Dana{{index+1}} nazwa</label>
+                <input type="text" v-model="dane[index].nazwa">
+                <label for="">Dana{{index+1}} typ</label>
+                <select v-model="dane[index].typ">
+                    <option value="int AUTO_INCREMENT">id</option>
+                    <option value="int">int</option>
+                    <option value="varchar(180)">string</option>
+                    <option value="date">data</option>
+                </select>
+                <button @click="remove(index)">usuń</button>
+            </div>
+            </div>
+            <div class="col-2"><button @click="add">dodaj</button> </div>
+        </div>
+
+        {{tabela}}
+
+    </div>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+
+<script>
+let app = new Vue({
+    el:'#app',
+    data:{
+        dane:[{nazwa:'id',typ:'int AUTO_INCREMENT'}],
+        nazwatabeli:'daty',
+        tabela:'',
+
+    },
+    methods:{
+        generateTabela(){
+            this.tabela = '';
+            this.tabela += 'CREATE TABLE ' + this.nazwatabeli + ' ( ';
+            for(let i = 0; i < this.dane.length;i++){
+                this.tabela += this.dane[i].nazwa +' '+this.dane[i].typ;
+                console.log(i+1);
+                console.log(this.dane.length);
+                
+                
+                if (i + 1 < this.dane.length) { this.tabela += ',' }
+
+            }
+
+            this.tabela += ')';
+
+        },
+        add(){
+            this.dane.push({nazwa:'',typ:'' })
+        },
+        remove(index){
+            this.dane.splice(index,1);
+        }    
+
+         
+    }
+})
+
+
+let output  = '';
+
+
+
+
+
+
+
+
+
+</script>
