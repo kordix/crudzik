@@ -78,14 +78,8 @@
         </textarea>
 
         <button @click="save">zapisz</button>
-
-
-
-
     </div>
 </div>
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
 
@@ -119,9 +113,7 @@
                     if (i + 1 < this.dane.length) { this.tabela += ',' }
 
                 }
-
                 this.tabela += ')';
-
             },
             generateRequest() {
                 this.request += ''
@@ -135,7 +127,6 @@
                 }
             },
             generateInsertStatement() {
-
                 this.insertStatement += 'INSERT INTO ' + this.nazwatabeli + '(';
                 for (let i = 0; i < this.dane.length; i++) {
                     if (this.dane[i].nazwa == 'id') {
@@ -153,8 +144,6 @@
                     }
                 }
                 this.insertStatement += ')';
-
-
             },
             generateInsertExecute() {
                 this.insertExecute += '[';
@@ -166,8 +155,6 @@
                     }
                 }
                 this.insertExecute += ']';
-
-
             },
             generateUpdateStatement(){
                 this.updateStatement += `UPDATE ${this.nazwatabeli} SET `;
@@ -189,9 +176,7 @@
                     }
                 }
                 this.updateExecute += '$id]';
-
             },
-
             add() {
                 this.dane.push({ nazwa: '', typ: '' })
             },
@@ -203,8 +188,6 @@
                 localStorage.tabela = this.nazwatabeli;
 
             }
-
-
         }
     })
 

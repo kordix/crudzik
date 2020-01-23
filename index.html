@@ -13,16 +13,19 @@
 
 <body>
     <div id="app" class="container">
+        
         <read inline-template @editevent="edit($event)">
+            <div>
+            <p>Search: <input type="text" v-model="search"></p>
             <div>
                 <table class="table table-bordered table-dark">
                     <thead>
                         <tr>
-                            <th v-for="elem in heads">{{elem}}</th>
+                            <th v-for="elem in heads" @click="sortBy(elem)">{{elem}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="elem in cruddata">
+                        <tr v-for="elem in filtered">
                             <td v-for="k in heads">{{elem[k]}}</td>
                             <td>
                                 <button type="button" class="btn btn-success editbtn" @click="edit(elem.id)"> EDIT </button>
@@ -35,7 +38,7 @@
                     </tbody>
                 </table>
             </div>
-
+        </div>
         </read>
         <edit :mode="mode" :id="editid" inline-template>
             <div>
@@ -49,7 +52,7 @@
 
                 <div class="from-group" v-for="elem in $parent.dane" v-if="elem.nazwa != 'id'">
                     <label :for="elem.nazwa">{{elem.nazwa}}</label>    
-                    <input type="text" :name="elem.nazwa" :value="cruddata[elem.nazwa]">
+                    <input :type="elem.typ=='date' ? 'date' : 'text'" :name="elem.nazwa" :value="cruddata[elem.nazwa]">
                 </div>
                 <button type="submit">zapisz</button>
                 </form>

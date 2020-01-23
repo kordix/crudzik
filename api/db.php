@@ -6,6 +6,7 @@ try {
     $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $user, $pass);
 }
 catch(PDOException $exception){
+    // http_response_code(400);
     echo "Connection error: " . $exception->getMessage();
 }
 

@@ -3,11 +3,13 @@ Vue.component('read', {
         return {
             heads: [],
             cruddata: [],
+            search:'',
+            sortkey:''
         }
     },
     created() {
         let self = this;
-        axios.get('api/read.php').then((res) => this.cruddata = res.data).then((res) => self.getHeads());
+        axios.get('api/read.php').then((res) => {this.cruddata = res.data}).then((res) => self.getHeads());
     },
     methods: {
         edit(id) {
@@ -20,7 +22,40 @@ Vue.component('read', {
             if(this.cruddata[0]){
                 this.heads = Object.keys(this.cruddata[0])
             }
+        },
+        sortBy(elem){
+            console.log('sortby');
+            this.sortkey=elem;
         }
+    },
+    computed:{
+        filtered: function () {
+            let self = this;
+            var filterKey = this.search && this.search.toLowerCase()
+            var order = 1;
+            var filtered = this.cruddata;
+            if (filterKey) {
+                filtered = filtered.filter(function (row) {
+                return Object.keys(row).some(function (key) {
+                  return String(row[key]).toLowerCase().indexOf(filterKey) > -1
+                })
+              })
+            }
+            if (this.sortkey) {
+                
+                filtered = filtered.sort(function (a, b) {
+                    console.log(self.sortkey);
+                    
+                    var keyA =a[self.sortkey];
+                    var keyB = b[self.sortkey];
+                // Compare the 2 dates
+                if(keyA < keyB) return -1;
+                if(keyA > keyB) return 1;
+                return 0;
+              })
+            }
+            return filtered
+          }
     }
 });
 
@@ -63,14 +98,11 @@ Vue.component('edit', {
 });
 
 
-
-
-
 let app = new Vue({
     el: '#app',
     data: {
         //REPLACE
-        dane: [{"nazwa":"id","typ":"int AUTO_INCREMENT PRIMARY KEY"},{"nazwa":"imie","typ":"varchar(180)"},{"nazwa":"nazwisko","typ":"varchar(180)"},{"nazwa":"miasto","typ":"varchar(180)"},{"nazwa":"ulica","typ":"varchar(180)"}],
+        dane: [{"nazwa":"id","typ":"int AUTO_INCREMENT PRIMARY KEY"},{"nazwa":"imie","typ":"varchar(180)"},{"nazwa":"nazwisko","typ":"varchar(180)"},{"nazwa":"miasto","typ":"varchar(180)"},{"nazwa":"data","typ":"date"}],
     editid:null,
     mode:'create'
         
