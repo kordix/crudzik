@@ -1,15 +1,20 @@
 <?php
+if($_SERVER['REQUEST_METHOD'] != 'POST') return;
+
 require_once 'db.php';
 
 // $dbh = null;
 
-$id = $_GET['id'];
+$dane = json_decode(file_get_contents('php://input'));
+
+$tabela = $dane->tabela;
+$id = $dane->id;
+
 //REPLACE
-$query_run = $dbh->prepare("SELECT * FROM klienci  where id = ?");
-$query_run->execute([$id]);
+$query_run = $dbh->prepare("SELECT * FROM $tabela where id = $id");
+$query_run->execute();
 
 class dummy {}
-
 
 $rows = $query_run->fetchAll(PDO::FETCH_CLASS, "dummy");
 

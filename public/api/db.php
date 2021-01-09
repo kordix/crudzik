@@ -1,5 +1,8 @@
 <?php
-require_once 'cred.php';
+if($_SERVER['REQUEST_METHOD'] != 'POST') return;
+
+
+require_once '../../cred.php';
 
 
 try {
@@ -7,6 +10,8 @@ try {
 }
 catch(PDOException $exception){
     // http_response_code(400);
+    return http_response_code(500);
+
     echo "Connection error: " . $exception->getMessage();
 }
 

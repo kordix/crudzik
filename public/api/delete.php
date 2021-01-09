@@ -1,12 +1,15 @@
 <?php
+if($_SERVER['REQUEST_METHOD'] != 'POST') return;
+
 require_once 'db.php';
 
-$data = json_decode(file_get_contents("php://input"), true);
-$id = $data['id'];
+$data = json_decode(file_get_contents("php://input"));
+$tabela = $data->tabela;
+$id = $data->id;;
 
-//replace
-$sth = $dbh->prepare("DELETE FROM klienci WHERE id=?");
-$sth->execute([$id]);
+//replac
+$sth = $dbh->prepare("DELETE FROM $tabela WHERE id=$id");
+$sth->execute();
 //
 // $sth->debugDumpParams();
 //

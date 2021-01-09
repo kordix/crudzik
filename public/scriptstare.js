@@ -102,7 +102,7 @@ let app = new Vue({
     el: '#app',
     data: {
         //REPLACE
-        dane: [{"nazwa":"id","typ":"int AUTO_INCREMENT PRIMARY KEY"},{"nazwa":"imie","typ":"varchar(180)"},{"nazwa":"nazwisko","typ":"varchar(180)"},{"nazwa":"miasto","typ":"varchar(180)"},{"nazwa":"data","typ":"date"}],
+        dane: [{"nazwa":"kod","typ":"varchar(180)"},{"nazwa":"opis","typ":"varchar(180)"}],
     editid:null,
     mode:'create'
         

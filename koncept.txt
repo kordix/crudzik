@@ -1,0 +1,22 @@
+-zamiast handlerequest i wpisywania na sztywno w kodzie jest model ktory
+
+-foreach na obiekt zamiast handlerequest
+-insert generuje się dynamicznie na podstawie obiektu z post, niekoniecznie dla wszystkich kolumn
+-insert i update przez axios.post a nie formularz z phpa
+
+a)przekazywanie getem o którą tabele chodzi, add,update i delete php działa uniwersalnie
+b)generator add.php update.php read.php readone.php delete.php, w osobnym folderze, bez routów
+c)model z metodami add,update,delete,read,tabela jako argument/zmienna, z routingiem albo pliczki php z użyciem modelu
+
+a)prosty routing z SERVER_URI i ifami
+b)routing z tutoriala
+
+
+a)osobna aplikacja na backend
+b)aplikacja w public/index.php
+c)zwracanie widoku przez routing
+d)
+
+
+
+-kreator - powstaje folder modelu i 4 pliki - add,update,read,
