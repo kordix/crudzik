@@ -1,6 +1,7 @@
 let app = new Vue({
     data:{
-        obiekt:{tabela:'klienci', dane:{imie:'asdfdupa',nazwisko:'siema'},id:4}
+        obiekt:{tabela:'klienci', dane:{imie:'asdfdupa',nazwisko:'siema'},id:4},
+        wylogujshow:false
     },
     el:'#app',
     methods:{

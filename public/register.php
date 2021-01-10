@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['zalogowany'])){
-    header('location:/');
+   // header('location:/');
 }
 
 ?>
@@ -24,7 +24,7 @@ if(isset($_SESSION['zalogowany'])){
 <label for="">Haslo</label>
 <input type="password" v-model="password">
 
-<button @click="zaloguj">Zaloguj</button>
+<button @click="register">Zarejestruj</button>
 
 <p><b>{{error}}</b></p>
 
@@ -44,19 +44,11 @@ let app = new Vue({
         error:''
     },
     methods:{
-        zaloguj(){
+        register(){
             let self = this;
-            axios.post('api/zaloguj.php',{login:this.login,password:this.password}).then((res)=>{
-                console.log(res.data.length);
-
+            axios.post('api/register.php',{login:this.login,password:this.password}).then((res)=>{
+                console.log(res.data)
               
-
-                if(res.data.length == 12){
-                    console.log('JOŁ JOŁ ZALOGOWANY');
-                    location.reload();
-                }else{
-                    self.error = 'Zły login lub hasło';
-                }
             })
         }
     }
