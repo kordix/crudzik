@@ -14,11 +14,13 @@ if(isset($_SESSION['zalogowany'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zaloguj</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
 
-<div id="app">
+<div id="app" class="container my-5">
 <label for="">Login</label>
 <input type="text" v-model="login">
 <label for="">Haslo</label>
@@ -26,7 +28,9 @@ if(isset($_SESSION['zalogowany'])){
 
 <button @click="register">Zarejestruj</button>
 
-<p><b>{{error}}</b></p>
+<p v-html><b v-html>{{error}}</b></p>
+
+<p v-if="success">Gratulacje, pomyślnie zarejestrowano użytkownika. Możesz <a href="http://localhost:8002/login.php"> się zalogować</a></p>
 
 
 
@@ -41,13 +45,18 @@ let app = new Vue({
     data:{
         login:'',
         password:'',
-        error:''
+        error:'',
+        success:false
     },
     methods:{
         register(){
             let self = this;
             axios.post('api/register.php',{login:this.login,password:this.password}).then((res)=>{
-                console.log(res.data)
+                // console.log(res.data)
+                this.login = '';
+                this.password = '';
+
+                this.success = true;
               
             })
         }

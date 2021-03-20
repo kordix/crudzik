@@ -60,7 +60,7 @@
             getData(){
                 let self = this;
             axios.post('api/read.php', {
-                tabela: 'klienci'
+                tabela: 'users'
             }).then((res) => {
                 this.cruddata = res.data
             }).then((res) => self.getHeads());
@@ -85,7 +85,7 @@
             },
             deletem(id) {
                 axios.post('api/delete.php', {
-                    tabela: 'klienci',
+                    tabela: 'users',
                     id: id
                 }).then((res) => console.log(res)).then((res) => location.reload());
             },
