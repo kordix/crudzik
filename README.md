@@ -1,5 +1,5 @@
 # crudzik
-appka automatyzująca zrobienie cruda
+szablon dla cruda
 
 
 -odpal users.sql \
