@@ -1,4 +1,4 @@
-<script type="text/x-template" id="read">
+<script type="text/x-template" id="crudcomp">
     <div>
             <p>Search: <input type="text" v-model="search"></p>
             <div>
@@ -41,8 +41,8 @@
 
 
 <script>
-    Vue.component('read', {
-        template: '#read',
+    Vue.component('crudcomp', {
+        template: '#crudcomp',
         data() {
             return {
                 heads: [],

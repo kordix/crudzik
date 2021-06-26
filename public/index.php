@@ -28,10 +28,9 @@ if(!isset($_SESSION['zalogowany'])){
     
     <div  class="container" id="app">
     <app></app>
-<button  @click="test">test</button>
 
 
-<read></read>
+<crudcomp></crudcomp>
 
 
 </div>
@@ -41,7 +40,7 @@ if(!isset($_SESSION['zalogowany'])){
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     
 
-<?php include('../components/read.php') ?>
+<?php include('../components/crudcomp.php') ?>
 <?php include('../components/app.php') ?>
 <?php include('../components/test.php') ?>
 
